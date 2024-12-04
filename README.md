@@ -1,4 +1,4 @@
-### Singe-cell RNA-seq Data Analysis
+### Single-cell RNA-seq Data Analysis
 
 #### Goals
 
