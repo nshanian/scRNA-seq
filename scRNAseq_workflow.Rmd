@@ -1,8 +1,4 @@
----
-title: "scRNA-seq workflow"
-output: html_document
-date: "2024-12-04"
----
+Exploratory Analysis and Annotation of single-cell RNA-seq data
 
 ## Introduction
 This R workflow will perform exploratory analysis and annotation of single-cell RNA-seq data using the Seurat package. 
