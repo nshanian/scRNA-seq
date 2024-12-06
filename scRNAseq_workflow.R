@@ -197,10 +197,12 @@ pbmc_counts <- GetAssayData(pbmc.seurat.filtered, slot = 'counts')
 pred <- SingleR(test = pbmc_counts,
         ref = ref,
         labels = ref$label.main)
-
 pred
 ```
-
+```{r annotation lables}
+pbmc.seurat.filtered$singleR.labels <- pred$labels[match(rownames(pbmc.seurat.filtered@meta.data), rownames(pred))]
+DimPlot(pbmc.seurat.filtered, reduction = 'umap', group.by = 'singleR.labels')
+```
 ```{r annotation diganostics}
 # Annotation diagnostics
 # Based on the scores within cells
