@@ -2,6 +2,8 @@
 
 This repository contains an R workflow for exploratory analysis and annotation of single-cell RNA-seq data using the Seurat package.
 
+[Click here](https://htmlpreview.github.io/?https://github.com/nshanian/Documents/blob/main/scRNAseq_workflow.html) for the HTML version of this R markdown workflow with the output and the embedded plots.
+
 #### Introduction
 
 Single-cell RNA-seq data from human peripheral blood mononuclear cells (PBMCs) of a healthy female donor aged 25-30 were obtained by 10XGenomics from AllCells.
