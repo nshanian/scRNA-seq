@@ -1,6 +1,6 @@
-Exploratory Analysis and Annotation of single-cell RNA-seq data
+### Exploratory Analysis and Annotation of single-cell RNA-seq data
 
-## Introduction
+### Introduction
 This R workflow will perform exploratory analysis and annotation of single-cell RNA-seq data using the Seurat package. 
 
 Human peripheral blood mononuclear cells (PBMCs) of a healthy female donor aged 25-30 were obtained by 10XGenomics from AllCells.
@@ -9,7 +9,7 @@ Libraries were generated from ~33,000 cells (23,837 cells recovered) as describe
 
 https://www.10xgenomics.com/datasets/20-k-human-pbm-cs-3-ht-v-3-1-chromium-x-3-1-high-6-1-0
 
-## Goals
+### Goals
 
 This workflow will perform the following analyses:
 
@@ -22,7 +22,7 @@ This workflow will perform the following analyses:
 -   Non-linear dimensionality reduction (UMAP)
 -   Annotation of cell types
 
-## Setup
+### Setup
 
 As in a regular R script in RStudio, a single line of code can be run with Command-Enter (Mac OS) or Ctrl-Enter (Windows). Whole chunks of code can be run with Command(/Ctrl) + Shift + Enter **or** by clicking the green "\>" button in the top-right corner of the chunk. Alternatively, these options can also be implemented by selecting lines of code and choosing the desired option from the drop-down menu in the "Run" tab, in the top-right corner of the of Source section of RStudio.
 
