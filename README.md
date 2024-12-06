@@ -53,6 +53,7 @@ brew install hdf5
 
 `tidyverse`: https://www.tidyverse.org/packages/
 
-`pheatmap`: https://github.com/raivokolde/pheatmap , https://cran.r-project.org/web/packages/pheatmap/index.html
+`pheatmap`: https://github.com/raivokolde/pheatmap , 
+            https://cran.r-project.org/web/packages/pheatmap/index.html
 
 
