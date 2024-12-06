@@ -5,6 +5,7 @@ date: "2024-12-04"
 ---
 
 ## Introduction
+This R workflow will perform exploratory analysis and annotation of single-cell RNA-seq data using the Seurat package. 
 
 Human peripheral blood mononuclear cells (PBMCs) of a healthy female donor aged 25-30 were obtained by 10XGenomics from AllCells.
 
