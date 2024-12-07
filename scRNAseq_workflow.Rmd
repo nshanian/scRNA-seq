@@ -102,7 +102,7 @@ pbmc.seurat <- CreateSeuratObject(counts = hdf5_obj)
 
 ### QC and Filtering
 
-#### It's good practice to filter out cells where genes identified and genes with expression across cells fall below a certain threshold.
+##### It's good practice to filter out cells where genes identified and genes with expression across cells fall below a certain threshold.
 
 ```{r filter data}
 # QC and Filtering
@@ -196,7 +196,7 @@ DimPlot(pbmc.seurat.filtered, reduction = 'umap')
 
 ### Annotation 
 
-#### Unlike marker-based annotation that relies on traditional information of canonical marker genes that are specifically expressed in known cell types, this workflow uses the reference-based annotation strategy, which utilizes comprehensive gene expression profiles of expertly annotated reference datasets, like the Human Cell Atlas.
+##### Unlike marker-based annotation that relies on traditional information of canonical marker genes that are specifically expressed in known cell types, this workflow uses the reference-based annotation strategy, which utilizes comprehensive gene expression profiles of expertly annotated reference datasets, like the Human Cell Atlas.
 
 #### Obtain reference data using `celldex` package
 
