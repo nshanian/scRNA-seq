@@ -134,6 +134,7 @@ top10 <- head(VariableFeatures(pbmc.seurat.filtered), 10)
 plot1 <- VariableFeaturePlot(pbmc.seurat.filtered)
 LabelPoints(plot = plot1, points = top10, repel = TRUE)
 ```
+
 ### Scale the data
 
 ```{r scaling the data}
