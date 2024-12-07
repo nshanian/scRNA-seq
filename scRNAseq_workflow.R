@@ -102,7 +102,7 @@ pbmc.seurat <- CreateSeuratObject(counts = hdf5_obj)
 
 ### QC and Filtering
 
-#### It's good practice to filter out cells where genes identified and genes with expression across cells fall below a certain threshold.
+##### It's good practice to filter out cells where genes identified and genes with expression across cells fall below a certain threshold.
 
 ```{r filter data}
 # QC and Filtering
