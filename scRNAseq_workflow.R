@@ -196,7 +196,7 @@ DimPlot(pbmc.seurat.filtered, reduction = 'umap')
 
 ### Annotation 
 
-#### Unlike marker-based annotation that relies on traditional information of canonical marker genes that are specifically expressed in known cell types, this workflow uses the reference-based annotation strategy, which utilizes comprehensive gene expression profiles of expertly annotated reference datasets, like the Human Cell Atlas.
+##### Unlike marker-based annotation that relies on traditional information of canonical marker genes that are specifically expressed in known cell types, this workflow uses the reference-based annotation strategy, which utilizes comprehensive gene expression profiles of expertly annotated reference datasets, like the Human Cell Atlas.
 
 #### Obtain reference data using `celldex` package
 
