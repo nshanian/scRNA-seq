@@ -1,6 +1,6 @@
 # script to perform trajectory analysis
 # https://www.nature.com/articles/s41467-019-10291-0
-# setwd("~/Desktop/demo/monocle3")
+# setwd("~/Desktop/monocle3")
 
 set.seed(1234)
 
@@ -11,14 +11,14 @@ library(ggplot2)
 library(tidyverse)
 
 
-# read in data
+# Load data
 markers <- read.delim('ABC_Marker.txt', header = T) # gene metadata
 metadata <- read.delim('ABC_Meta.txt', header = T) # cell metadata
 expr <- read.delim('ABC_umi_matrix_7551_cells.csv', header = T, sep = ',') # expression matrix
 
 
 
-# create seurat object ---------------
+# Create seurat object ---------------
 expr.t <- t(expr)
 seu.obj <- CreateSeuratObject(counts = expr.t)
 View(seu.obj@meta.data)
@@ -32,7 +32,7 @@ seu.obj.filtered <- subset(seu.obj, subset = nCount_RNA > 800 &
                     mitopercent < 10)
 
 
-# subset my seurat object - B cells
+# Subset my seurat object - B cells
 
 unique(seu.obj.filtered@meta.data$population)
 
@@ -41,7 +41,7 @@ b.seu <- subset(seu.obj.filtered, idents = "b")
 b.seu
 unique(b.seu@meta.data$redefined_cluster)
 
-# pre-processing using seurat
+# Pre-processing using seurat
 b.seu <- NormalizeData(b.seu)
 b.seu <- FindVariableFeatures(b.seu)
 b.seu <- ScaleData(b.seu)
