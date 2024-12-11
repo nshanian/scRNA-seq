@@ -1,5 +1,5 @@
 # script to perform pseudo-bulk DGA
-# setwd("~/Desktop/demo/single_cell_DEG")
+# setwd("~/Desktop/single_cell_DEG")
 
 library(ExperimentHub)
 library(Seurat)
