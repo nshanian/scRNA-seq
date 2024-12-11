@@ -3,7 +3,7 @@
 # Finding conserved markers 
 # Finding markers DE between conditions
 
-# setwd("~/Desktop/demo/single_cell_DEG/script")
+# setwd("~/Desktop/single_cell_DEG/")
 
 set.seed(1234)
 
@@ -46,33 +46,31 @@ markers_cluster3 <- FindConservedMarkers(ifnb_harmony,
 
 head(markers_cluster3)
 
-# let's visualize top features
+# Visualize top features
 FeaturePlot(ifnb_harmony, features = c('FCGR3A'), min.cutoff = 'q10')
 
 
-# min-cut off explanation:
+# Min-cut off explanation:
 seq(1,5)
 SetQuantile('q50', seq(1,5))
 SetQuantile('q10', seq(1,5))
 
 
 
-
-
-# rename cluster 3 ident
+# Rename cluster 3 ident
 Idents(ifnb_harmony)
 ifnb_harmony <- RenameIdents(ifnb_harmony, `3` = 'CD16 Mono')
 
 DimPlot(ifnb_harmony, reduction = 'umap', label = T)
 
-# cells already have annotations provided in the metadata
+# Cells already have annotations provided in the metadata
 View(ifnb_harmony@meta.data)
 
 # Settings cluster identities is an iterative step
-# multiple approaches could be taken - automatic/manual anotations (sometimes both)
-# need to make sure each cell type forms a separate cluster
+# Multiple approaches could be taken - automatic/manual anotations (sometimes both)
+# Need to make sure each cell type forms a separate cluster
 
-# setting Idents as Seurat annotations provided (also a sanity check!)
+# Setting Idents as Seurat annotations provided (also a sanity check!)
 Idents(ifnb_harmony) <- ifnb_harmony@meta.data$seurat_annotations
 Idents(ifnb_harmony)
 
@@ -86,12 +84,12 @@ Idents(ifnb_harmony) <- ifnb_harmony$celltype.cnd
 
 DimPlot(ifnb_harmony, reduction = 'umap', label = TRUE)
 
-# find markers
+# Find markers
 b.interferon.response <- FindMarkers(ifnb_harmony, ident.1 = 'CD16 Mono_STIM', ident.2 = 'CD16 Mono_CTRL')
 
 head(b.interferon.response)
 
-# plotting conserved features vs DE features between conditions
+# Plotting conserved features vs DE features between conditions
 head(markers_cluster3)
 
 
