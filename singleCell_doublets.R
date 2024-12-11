@@ -1,5 +1,5 @@
 # filter out doublets: DoubletFinder
-# setwd("~/Desktop/demo/single_cell_doublets/scripts")
+# setwd("~/Desktop/single_cell_doublets/")
 
 # load libraries
 library(Seurat)
@@ -8,9 +8,9 @@ library(tidyverse)
 library(DoubletFinder)
 
 # create counts matrix
-cts <- ReadMtx(mtx = '/Users/Desktop/demo/single_cell_doublets/data/raw_feature_bc_matrix/matrix.mtx.gz',
-        features = '/Users/Desktop/demo/single_cell_doublets/data/raw_feature_bc_matrix/features.tsv.gz',
-        cells = '/Users/Desktop/demo/single_cell_doublets/data/raw_feature_bc_matrix/barcodes.tsv.gz')
+cts <- ReadMtx(mtx = '/Users/Desktop/single_cell_doublets/data/raw_feature_bc_matrix/matrix.mtx.gz',
+        features = '/Users/Desktop/single_cell_doublets/data/raw_feature_bc_matrix/features.tsv.gz',
+        cells = '/Users/Desktop/single_cell_doublets/data/raw_feature_bc_matrix/barcodes.tsv.gz')
 
 cts[1:10,1:10]
 
