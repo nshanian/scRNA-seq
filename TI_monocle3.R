@@ -1,6 +1,7 @@
-# script to perform trajectory analysis
-# https://www.nature.com/articles/s41467-019-10291-0
-# setwd("~/Desktop/monocle3")
+# This script will to perform trajectory analysis using Seurat and Monocle3 packages
+# The expression matrix, cell metadata and gene metadata (marker information) can be downloaded from the Atlas of Human Blood Cells: http://scrna.sklehabc.com/
+
+setwd("~/Desktop/scRNA-seq/monocle3")
 
 set.seed(1234)
 
@@ -11,37 +12,47 @@ library(ggplot2)
 library(tidyverse)
 
 
-# Load data
+# read in data
 markers <- read.delim('ABC_Marker.txt', header = T) # gene metadata
 metadata <- read.delim('ABC_Meta.txt', header = T) # cell metadata
 expr <- read.delim('ABC_umi_matrix_7551_cells.csv', header = T, sep = ',') # expression matrix
 
 
 
-# Create seurat object ---------------
+# create seurat object ---------------
 expr.t <- t(expr)
 seu.obj <- CreateSeuratObject(counts = expr.t)
 View(seu.obj@meta.data)
 seu.obj@meta.data <- merge(seu.obj@meta.data, metadata, by.x = 'row.names', by.y = 'cell_id')
 View(seu.obj@meta.data)
-seu.obj@meta.data <- seu.obj@meta.data %>% 
-  column_to_rownames(var = 'Row.names')
+
+#seu.obj@meta.data <- seu.obj@meta.data %>% 
+#  column_to_rownames(var = 'Row.names')
+
+seu.obj <- CreateSeuratObject(counts = expr.t, meta.data = metadata)
+str(seu.obj)
+
+# filter mitochondrial reads
 seu.obj$mitopercent <- PercentageFeatureSet(seu.obj, pattern = '^MT-')
+
 seu.obj.filtered <- subset(seu.obj, subset = nCount_RNA > 800 &
                     nFeature_RNA > 500 &
                     mitopercent < 10)
 
-
-# Subset my seurat object - B cells
-
+# subset my seurat object - B cells
 unique(seu.obj.filtered@meta.data$population)
 
+Idents(seu.obj.filtered)
+
+# identify cells by population or groups cells belong to
 Idents(seu.obj.filtered) <- seu.obj.filtered$population
+Idents(seu.obj.filtered)
+
 b.seu <- subset(seu.obj.filtered, idents = "b")
 b.seu
 unique(b.seu@meta.data$redefined_cluster)
 
-# Pre-processing using seurat
+# pre-processing using Seurat
 b.seu <- NormalizeData(b.seu)
 b.seu <- FindVariableFeatures(b.seu)
 b.seu <- ScaleData(b.seu)
@@ -70,6 +81,7 @@ cds
 
 # to get cell metadata
 colData(cds)
+
 # to gene metdata
 fData(cds)
 rownames(fData(cds))[1:10]
@@ -86,18 +98,18 @@ counts(cds)
 # let's use the clustering information have
 
 # assign paritions
-reacreate.partition <- c(rep(1,length(cds@colData@rownames)))
-names(reacreate.partition) <- cds@colData@rownames
-reacreate.partition <- as.factor(reacreate.partition)
+recreate.partition <- c(rep(1,length(cds@colData@rownames)))
+names(recreate.partition) <- cds@colData@rownames
+recreate.partition <- as.factor(recreate.partition)
 
 
-cds@clusters$UMAP$partitions <- reacreate.partition
+cds@clusters$UMAP$partitions <- recreate.partition
 
 # Assign the cluster info 
 
 list_cluster <- b.seu@active.ident
 cds@clusters$UMAP$clusters <- list_cluster
-
+cds
 
 # Assign UMAP coordinate - cell embeddings
 
@@ -151,11 +163,12 @@ plot_cells(cds,
 
 pseudotime(cds)
 cds$monocle3_pseudotime <- pseudotime(cds)
+colData(cds)
+
 data.pseudo <- as.data.frame(colData(cds))
 
 ggplot(data.pseudo, aes(monocle3_pseudotime, reorder(redefined_cluster, monocle3_pseudotime, median), fill = redefined_cluster)) +
   geom_boxplot()
-
 
 
 
